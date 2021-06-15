@@ -1,0 +1,11 @@
+VFD            KEYWORD1
+
+begin          KEYWORD2
+write          KEYWORD2
+set_offset     KEYWORD2
+clear          KEYWORD2
+write_CGRAM    KEYWORD2
+set_brightness KEYWORD2
+on             KEYWORD2
+off            KEYWORD2
+set_ICON       KEYWORD2

@@ -74,9 +74,9 @@ void VFD::set_ICON(uint8_t id,bool on);
 
 ## DEMO
 
-[Datasheet](docs\datasheet)
+[Datasheet](docs/datasheet)
 
-[DEMO Schenatic](docs\VFD_13ST84GINK.SchDoc)
+[DEMO Schenatic](docs/VFD_13ST84GINK.SchDoc)
 
 Testing：
 

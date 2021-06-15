@@ -80,5 +80,5 @@ void VFD::set_ICON(uint8_t id,bool on);
 
 Testing：
 
-![IMG_20210615_232715](images\IMG_20210615_232715.jpg)
+![IMG_20210615_232715](images/IMG_20210615_232715.jpg)
 

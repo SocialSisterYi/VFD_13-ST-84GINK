@@ -44,7 +44,7 @@ size_t VFD::write(uint8_t chr) {
     return 1;
 }
 
-// 设置DDRAM偏移量
+// 设置DRAM偏移量
 void VFD::set_offset(int offset) {
     this->DDRAM_ptr = min(max(offset,DDRAM_OFFSET_MIN),DDRAM_OFFSET_MAX);
 }
@@ -81,8 +81,7 @@ void VFD::write_G0ICON() {
 }
 
 // 写ADRAM
-void VFD::write_ADRAM(uint8_t addr,uint8_t val)
-{
+void VFD::write_ADRAM(uint8_t addr,uint8_t val) {
     addr = min(max(addr,ICONRAM_MIX),ICONRAM_MAX);
     digitalWrite(_CSpin,LOW);
     this->write_data(VFD_WRITE_ADRAM | (addr+1));
@@ -114,19 +113,24 @@ void VFD::off() {
 
 // 设置ICON开关
 void VFD::set_ICON(uint8_t id,bool on) {
+    // 0段图标
     if(id <= ICON_480_P) {
-        if(on)
-			ICON1[id % 5] |= (uint8_t)0x01 << (id / 5);
-		else
-			ICON1[id % 5] &=~ (uint8_t)(0x01 << (id / 5));
+        if(on) {
+            ICON1[id % 5] |= (uint8_t)0x01 << (id / 5);
+        } else {
+            ICON1[id % 5] &=~ (uint8_t)(0x01 << (id / 5));
+        }
         this->write_G0ICON();
+    // ADRAM图标
     } else if(id <= ICON_LOOP) {
         id -= ICON_TIME;
-        if(on)
+        if(on) {
             ICON2[id] |= 0x02;
-        else
+        } else {
             ICON2[id] &= ~0x02;
+        }
         this->write_ADRAM(id,ICON2[id]);
+    // ADRAM冒号
     } else if(id <= ICON_COLON3) {
         id = (id-ICON_COLON1)*2+ICON_LOCK-ICON_TIME;
         if(on) {
